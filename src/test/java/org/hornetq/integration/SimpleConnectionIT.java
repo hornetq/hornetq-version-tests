@@ -6,6 +6,7 @@ import org.hornetq.api.core.client.ClientSessionFactory;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
+import org.hornetq.utils.VersionLoader;
 import org.junit.Test;
 
 /**
@@ -18,11 +19,11 @@ public class SimpleConnectionIT
     @Test
     public void testSingleConnection() throws Exception
     {
-        System.out.println("SimpleConnectionIT.testSingleConnection");
         TransportConfiguration transportConfiguration = new TransportConfiguration(NettyConnectorFactory.class.getName());
         ServerLocator locator = HornetQClient.createServerLocatorWithoutHA(transportConfiguration);
         ClientSessionFactory factory = locator.createSessionFactory();
         ClientSession clientSession = factory.createSession();
+        System.out.println("version=" + VersionLoader.getVersion().getFullVersion());
         clientSession.close();
     }
 }
