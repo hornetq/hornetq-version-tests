@@ -26,4 +26,19 @@ public class SimpleConnectionIT
         System.out.println("version=" + VersionLoader.getVersion().getFullVersion());
         clientSession.close();
     }
+
+    @Test
+    public void testMultipleConnection() throws Exception
+    {
+        TransportConfiguration transportConfiguration = new TransportConfiguration(NettyConnectorFactory.class.getName());
+        ServerLocator locator = HornetQClient.createServerLocatorWithoutHA(transportConfiguration);
+        ServerLocator locator2 = HornetQClient.createServerLocatorWithoutHA(transportConfiguration);
+        ClientSessionFactory factory = locator.createSessionFactory();
+        ClientSessionFactory factory2 = locator.createSessionFactory();
+        ClientSession clientSession = factory.createSession();
+        ClientSession clientSession2 = factory.createSession();
+        System.out.println("version=" + VersionLoader.getVersion().getFullVersion());
+        clientSession.close();
+        clientSession2.close();
+    }
 }
