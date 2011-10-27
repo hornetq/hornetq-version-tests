@@ -2,25 +2,46 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="urn:hornetq /schema/hornetq-jms.xsd">
 
-   <connection-factory name="NettyConnectionFactory">
+   <connection-factory name="NettyXAConnectionFactory">
       <xa>true</xa>
       <connectors>
          <connector-ref connector-name="netty"/>
       </connectors>
       <entries>
-         <entry name="/XAConnectionFactory"/>
+         <entry name="/NettyXAConnectionFactory"/>
       </entries>
    </connection-factory>
-   
-   <connection-factory name="NettyConnectionFactory">
+
+   <connection-factory name="NettyNonXAConnectionFactory">
       <xa>false</xa>
       <connectors>
          <connector-ref connector-name="netty"/>
       </connectors>
       <entries>
-         <entry name="/ConnectionFactory"/>
+         <entry name="/NettyNonXAConnectionFactory"/>
       </entries>
    </connection-factory>
+
+   <connection-factory name="NettyHAConnectionFactory">
+      <ha>true</ha>
+      <connectors>
+         <connector-ref connector-name="netty"/>
+      </connectors>
+      <entries>
+         <entry name="/NettyHAConnectionFactory"/>
+      </entries>
+   </connection-factory>
+
+   <connection-factory name="NettyNonHAConnectionFactory">
+      <ha>false</ha>
+      <connectors>
+         <connector-ref connector-name="netty"/>
+      </connectors>
+      <entries>
+         <entry name="/NettyNonHAConnectionFactory"/>
+      </entries>
+   </connection-factory>
+
 
    <queue name="DLQ">
       <entry name="/queue/DLQ"/>
@@ -29,5 +50,9 @@
    <queue name="ExpiryQueue">
       <entry name="/queue/ExpiryQueue"/>
    </queue>
+
+   <topic name="DLQ">
+      <entry name="/topic/aTopic"/>
+   </topic>
 
 </configuration>
