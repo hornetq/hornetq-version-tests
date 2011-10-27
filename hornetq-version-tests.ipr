@@ -85,6 +85,61 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/hornetq/hornetq-core-client/2.2.5.Final/hornetq-core-client-2.2.5.Final-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.hornetq:hornetq-core:2.2.5.Final">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hornetq/hornetq-core/2.2.5.Final/hornetq-core-2.2.5.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hornetq/hornetq-core/2.2.5.Final/hornetq-core-2.2.5.Final-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hornetq/hornetq-core/2.2.5.Final/hornetq-core-2.2.5.Final-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.hornetq:hornetq-jms-client:2.2.5.Final">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hornetq/hornetq-jms-client/2.2.5.Final/hornetq-jms-client-2.2.5.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hornetq/hornetq-jms-client/2.2.5.Final/hornetq-jms-client-2.2.5.Final-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hornetq/hornetq-jms-client/2.2.5.Final/hornetq-jms-client-2.2.5.Final-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.jboss.javaee:jboss-jms-api:1.1.0.GA">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/javaee/jboss-jms-api/1.1.0.GA/jboss-jms-api-1.1.0.GA.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/javaee/jboss-jms-api/1.1.0.GA/jboss-jms-api-1.1.0.GA-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/javaee/jboss-jms-api/1.1.0.GA/jboss-jms-api-1.1.0.GA-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.jboss.logging:jboss-logging-spi:2.0.5.GA">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging-spi/2.0.5.GA/jboss-logging-spi-2.0.5.GA.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging-spi/2.0.5.GA/jboss-logging-spi-2.0.5.GA-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging-spi/2.0.5.GA/jboss-logging-spi-2.0.5.GA-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.jboss.naming:jnpserver:5.0.3.GA">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/naming/jnpserver/5.0.3.GA/jnpserver-5.0.3.GA.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/naming/jnpserver/5.0.3.GA/jnpserver-5.0.3.GA-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/naming/jnpserver/5.0.3.GA/jnpserver-5.0.3.GA-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: org.jboss.netty:netty:3.2.3.Final">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.3.Final/netty-3.2.3.Final.jar!/" />
@@ -94,6 +149,17 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.3.Final/netty-3.2.3.Final-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.jboss:jboss-common-core:2.2.14.GA">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/jboss-common-core/2.2.14.GA/jboss-common-core-2.2.14.GA.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/jboss-common-core/2.2.14.GA/jboss-common-core-2.2.14.GA-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/jboss/jboss-common-core/2.2.14.GA/jboss-common-core-2.2.14.GA-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

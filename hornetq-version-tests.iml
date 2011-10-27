@@ -12,6 +12,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hornetq:hornetq-core-client:2.2.5.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.hornetq:hornetq-jms-client:2.2.5.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hornetq:hornetq-core:2.2.5.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.jboss.netty:netty:3.2.3.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss:jboss-common-core:2.2.14.GA" level="project" />

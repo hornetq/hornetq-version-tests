@@ -24,22 +24,22 @@ import org.objectweb.jtests.jms.admin.Admin;
 import org.objectweb.jtests.jms.admin.AdminFactory;
 import org.objectweb.jtests.jms.conform.connection.ConnectionTestIT;
 import org.objectweb.jtests.jms.conform.connection.TopicConnectionTestIT;/*
-import org.objectweb.jtests.jms.conform.message.MessageBodyTest;
-import org.objectweb.jtests.jms.conform.message.MessageDefaultTest;
-import org.objectweb.jtests.jms.conform.message.MessageTypeTest;
-import org.objectweb.jtests.jms.conform.message.headers.MessageHeaderTest;
-import org.objectweb.jtests.jms.conform.message.properties.JMSXPropertyTest;
-import org.objectweb.jtests.jms.conform.message.properties.MessagePropertyConversionTest;
-import org.objectweb.jtests.jms.conform.message.properties.MessagePropertyTest;
-import org.objectweb.jtests.jms.conform.queue.QueueBrowserTest;
-import org.objectweb.jtests.jms.conform.queue.TemporaryQueueTest;
-import org.objectweb.jtests.jms.conform.selector.SelectorSyntaxTest;
-import org.objectweb.jtests.jms.conform.selector.SelectorTest;
-import org.objectweb.jtests.jms.conform.session.QueueSessionTest;
-import org.objectweb.jtests.jms.conform.session.SessionTest;
-import org.objectweb.jtests.jms.conform.session.TopicSessionTest;
-import org.objectweb.jtests.jms.conform.session.UnifiedSessionTest;
-import org.objectweb.jtests.jms.conform.topic.TemporaryTopicTest;*/
+import org.objectweb.jtests.jms.conform.message.MessageBodyTestIT;
+import org.objectweb.jtests.jms.conform.message.MessageDefaultTestIT;
+import org.objectweb.jtests.jms.conform.message.MessageTypeTestIT;
+import org.objectweb.jtests.jms.conform.message.headers.MessageHeaderTestIT;
+import org.objectweb.jtests.jms.conform.message.properties.JMSXPropertyTestIT;
+import org.objectweb.jtests.jms.conform.message.properties.MessagePropertyConversionTestIT;
+import org.objectweb.jtests.jms.conform.message.properties.MessagePropertyTestIT;
+import org.objectweb.jtests.jms.conform.queue.QueueBrowserTestIT;
+import org.objectweb.jtests.jms.conform.queue.TemporaryQueueTestIT;
+import org.objectweb.jtests.jms.conform.selector.SelectorSyntaxTestIT;
+import org.objectweb.jtests.jms.conform.selector.SelectorTestIT;
+import org.objectweb.jtests.jms.conform.session.QueueSessionTestIT;
+import org.objectweb.jtests.jms.conform.session.SessionTestIT;
+import org.objectweb.jtests.jms.conform.session.TopicSessionTestIT;
+import org.objectweb.jtests.jms.conform.session.UnifiedSessionTestIT;
+import org.objectweb.jtests.jms.conform.topic.TemporaryTopicTestIT;*/
 import org.objectweb.jtests.jms.framework.JMSTestCase;
 
 import java.io.IOException;
@@ -164,22 +164,22 @@ public class JoramAggregationTest extends TestCase
 
       suite.addTest(new TestProxy(TopicConnectionTestIT.suite(),TopicConnectionTestIT.class.getName()));
       suite.addTest(new TestProxy(ConnectionTestIT.suite(), ConnectionTestIT.class.getName()));
-      /*suite.addTest(new TestProxy(MessageBodyTest.suite(), MessageBodyTest.class.getName()));
-      suite.addTest(new TestProxy(MessageDefaultTest.suite(), MessageDefaultTest.class.getName()));
-      suite.addTest(new TestProxy(MessageTypeTest.suite(), MessageTypeTest.class.getName()));
-      suite.addTest(new TestProxy(MessageHeaderTest.suite(), MessageHeaderTest.class.getName()));
-      suite.addTest(new TestProxy(JMSXPropertyTest.suite(), JMSXPropertyTest.class.getName()));
-      suite.addTest(new TestProxy(MessagePropertyConversionTest.suite(), MessagePropertyConversionTest.class.getName()));
-      suite.addTest(new TestProxy(MessagePropertyTest.suite(), MessagePropertyTest.class.getName()));
-      suite.addTest(new TestProxy(QueueBrowserTest.suite(), QueueBrowserTest.class.getName()));
-      suite.addTest(new TestProxy(TemporaryQueueTest.suite(), TemporaryQueueTest.class.getName()));
-      suite.addTest(new TestProxy(SelectorSyntaxTest.suite(), SelectorSyntaxTest.class.getName()));
-      suite.addTest(new TestProxy(SelectorTest.suite(), SelectorTest.class.getName()));
-      suite.addTest(new TestProxy(QueueSessionTest.suite(), QueueSessionTest.class.getName()));
-      suite.addTest(new TestProxy(SessionTest.suite(), SessionTest.class.getName()));
-      suite.addTest(new TestProxy(TopicSessionTest.suite(), TopicSessionTest.class.getName()));
-      suite.addTest(new TestProxy(UnifiedSessionTest.suite(), UnifiedSessionTest.class.getName()));
-      suite.addTest(new TestProxy(TemporaryTopicTest.suite(), TemporaryTopicTest.class.getName()));*/
+      /*suite.addTest(new TestProxy(MessageBodyTestIT.suite(), MessageBodyTestIT.class.getName()));
+      suite.addTest(new TestProxy(MessageDefaultTestIT.suite(), MessageDefaultTestIT.class.getName()));
+      suite.addTest(new TestProxy(MessageTypeTestIT.suite(), MessageTypeTestIT.class.getName()));
+      suite.addTest(new TestProxy(MessageHeaderTestIT.suite(), MessageHeaderTestIT.class.getName()));
+      suite.addTest(new TestProxy(JMSXPropertyTestIT.suite(), JMSXPropertyTestIT.class.getName()));
+      suite.addTest(new TestProxy(MessagePropertyConversionTestIT.suite(), MessagePropertyConversionTestIT.class.getName()));
+      suite.addTest(new TestProxy(MessagePropertyTestIT.suite(), MessagePropertyTestIT.class.getName()));
+      suite.addTest(new TestProxy(QueueBrowserTestIT.suite(), QueueBrowserTestIT.class.getName()));
+      suite.addTest(new TestProxy(TemporaryQueueTestIT.suite(), TemporaryQueueTestIT.class.getName()));
+      suite.addTest(new TestProxy(SelectorSyntaxTestIT.suite(), SelectorSyntaxTestIT.class.getName()));
+      suite.addTest(new TestProxy(SelectorTestIT.suite(), SelectorTestIT.class.getName()));
+      suite.addTest(new TestProxy(QueueSessionTestIT.suite(), QueueSessionTestIT.class.getName()));
+      suite.addTest(new TestProxy(SessionTestIT.suite(), SessionTestIT.class.getName()));
+      suite.addTest(new TestProxy(TopicSessionTestIT.suite(), TopicSessionTestIT.class.getName()));
+      suite.addTest(new TestProxy(UnifiedSessionTestIT.suite(), UnifiedSessionTestIT.class.getName()));
+      suite.addTest(new TestProxy(TemporaryTopicTestIT.suite(), TemporaryTopicTestIT.class.getName()));*/
       
       return new TestAggregation(suite);
    }
