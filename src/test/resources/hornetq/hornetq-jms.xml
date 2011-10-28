@@ -51,7 +51,7 @@
       <entry name="/queue/ExpiryQueue"/>
    </queue>
 
-   <topic name="DLQ">
+   <topic name="aTopic">
       <entry name="/topic/aTopic"/>
    </topic>
 
