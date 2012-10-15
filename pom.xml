@@ -7,10 +7,10 @@
     <name>HornetQ Version test framework</name>
 
     <properties>
-        <hornetqClientVersion>2.2.5.Final</hornetqClientVersion>
-        <nettyClientVersion>3.2.3.Final</nettyClientVersion>
-        <hornetqServerVersion>2.2.8.EAP.CR3</hornetqServerVersion>
-        <nettyServerVersion>3.2.3.Final</nettyServerVersion>
+        <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
+        <nettyClientVersion>3.2.6.Final</nettyClientVersion>
+        <hornetqServerVersion>2.3.0.BETA1</hornetqServerVersion>
+        <nettyServerVersion>3.4.5.Final</nettyServerVersion>
     </properties>
 
     <dependencies>
@@ -68,8 +68,8 @@
                 <plugins>
                     <plugin>
                         <groupId>org.hornetq</groupId>
-                        <artifactId>maven-hornetq-plugin</artifactId>
-                        <version>1.0-SNAPSHOT</version>
+                        <artifactId>hornetq-maven-plugin</artifactId>
+                        <version>1.1.0</version>
                         <dependencies>
                             <dependency>
                                 <groupId>org.hornetq</groupId>
@@ -82,7 +82,7 @@
                                 <version>${hornetqServerVersion}</version>
                             </dependency>
                             <dependency>
-                                <groupId>org.jboss.netty</groupId>
+                                <groupId>io.netty</groupId>
                                 <artifactId>netty</artifactId>
                                 <version>${nettyServerVersion}</version>
                             </dependency>
@@ -124,8 +124,8 @@
                     </plugin>
                     <plugin>
                         <groupId>org.hornetq</groupId>
-                        <artifactId>maven-hornetq-plugin</artifactId>
-                        <version>1.0-SNAPSHOT</version>
+                        <artifactId>hornetq-maven-plugin</artifactId>
+                        <version>1.1.0</version>
                         <dependencies>
                             <dependency>
                                 <groupId>org.hornetq</groupId>
@@ -138,7 +138,7 @@
                                 <version>${hornetqServerVersion}</version>
                             </dependency>
                             <dependency>
-                                <groupId>org.jboss.netty</groupId>
+                                <groupId>io.netty</groupId>
                                 <artifactId>netty</artifactId>
                                 <version>${nettyServerVersion}</version>
                             </dependency>
@@ -225,8 +225,8 @@
         <plugins>
             <plugin>
                 <groupId>org.hornetq</groupId>
-                <artifactId>maven-hornetq-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <artifactId>hornetq-maven-plugin</artifactId>
+                <version>1.1.0</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.hornetq</groupId>
@@ -239,7 +239,7 @@
                         <version>${hornetqServerVersion}</version>
                     </dependency>
                     <dependency>
-                        <groupId>org.jboss.netty</groupId>
+                        <groupId>io.netty</groupId>
                         <artifactId>netty</artifactId>
                         <version>${nettyServerVersion}</version>
                     </dependency>
