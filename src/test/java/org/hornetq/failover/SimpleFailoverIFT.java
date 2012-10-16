@@ -22,15 +22,12 @@
 package org.hornetq.failover;
 
 import org.hornetq.api.core.management.HornetQServerControl;
-import org.hornetq.api.core.management.ObjectNameBuilder;
-import org.hornetq.core.config.impl.ConfigurationImpl;
 import org.hornetq.jms.client.HornetQJMSConnectionFactory;
 import org.hornetq.jms.client.HornetQQueue;
 import org.junit.Test;
 
 import javax.jms.MessageProducer;
 import javax.jms.Session;
-import javax.management.MBeanServer;
 import javax.management.MBeanServerConnection;
 import javax.management.MBeanServerInvocationHandler;
 import javax.management.ObjectName;
@@ -38,8 +35,6 @@ import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 import javax.naming.InitialContext;
-import java.io.File;
-import java.lang.management.ManagementFactory;
 import javax.jms.Connection;
 import java.util.HashMap;
 import java.util.Hashtable;
