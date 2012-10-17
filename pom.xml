@@ -7,13 +7,6 @@
     <version>1.0-SNAPSHOT</version>
     <name>HornetQ Version test framework</name>
 
-    <properties>
-        <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
-        <nettyClientVersion>3.2.6.Final</nettyClientVersion>
-        <hornetqServerVersion>2.3.0.BETA1</hornetqServerVersion>
-        <nettyServerVersion>3.4.5.Final</nettyServerVersion>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -63,6 +56,46 @@
     </dependencies>
 
     <profiles>
+     <!--
+          After adding a new CLIENT profile update the list used at Jenkins with
+          mvn help:all-profiles | grep -P "Profile Id.*CLIENT" | cut -d ' ' -f 5
+
+          After adding a new SERVER profile...
+          mvn help:all-profiles | grep -P "Profile Id.*SERVER" | cut -d ' ' -f 5
+     -->
+     <profile>
+       <id>default</id>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+         </activation>
+       <properties>
+         <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
+         <nettyClientVersion>3.2.6.Final</nettyClientVersion>
+         <hornetqServerVersion>2.3.0.BETA1</hornetqServerVersion>
+         <nettyServerVersion>3.4.5.Final</nettyServerVersion>
+       </properties>
+     </profile>
+      <profile>
+        <id>2.3.0.BETA1-SERVER</id>
+        <properties>
+          <hornetqServerVersion>2.3.0.BETA1</hornetqServerVersion>
+          <nettyServerVersion>3.4.5.Final</nettyServerVersion>
+      </properties>
+      </profile>
+      <profile>
+        <id>2.2.19-CLIENT</id>
+        <properties>
+          <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
+          <nettyClientVersion>3.2.6.Final</nettyClientVersion>
+        </properties>
+      </profile>
+      <profile>
+        <id>2.2.16-CLIENT</id>
+        <properties>
+          <hornetqClientVersion>2.2.16.Final</hornetqClientVersion>
+          <nettyClientVersion>3.2.5.Final</nettyClientVersion>
+        </properties>
+      </profile>
         <profile>
             <id>failover</id>
             <build>
