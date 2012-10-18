@@ -158,40 +158,6 @@
                                     <hornetqConfigurationDir>target/test-classes/hornetqLiveNodeA/</hornetqConfigurationDir>
                                 </configuration>
                             </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.hornetq</groupId>
-                        <artifactId>hornetq-maven-plugin</artifactId>
-                        <version>1.1.0</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.hornetq</groupId>
-                                <artifactId>hornetq-core</artifactId>
-                                <version>${hornetqServerVersion}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.hornetq</groupId>
-                                <artifactId>hornetq-jms</artifactId>
-                                <version>${hornetqServerVersion}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>io.netty</groupId>
-                                <artifactId>netty</artifactId>
-                                <version>${nettyServerVersion}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.jboss.javaee</groupId>
-                                <artifactId>jboss-jms-api</artifactId>
-                                <version>1.1.0.GA</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.jboss.naming</groupId>
-                                <artifactId>jnpserver</artifactId>
-                                <version>5.0.3.GA</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
                             <execution>
                                 <id>startBackupA</id>
                                 <goals>
