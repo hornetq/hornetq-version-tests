@@ -71,14 +71,14 @@
        <properties>
          <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
          <nettyClientVersion>3.2.6.Final</nettyClientVersion>
-         <hornetqServerVersion>2.3.0.BETA1</hornetqServerVersion>
+         <hornetqServerVersion>2.3.0-SNAPSHOT-SERVER</hornetqServerVersion>
          <nettyServerVersion>3.4.5.Final</nettyServerVersion>
        </properties>
      </profile>
       <profile>
-        <id>2.3.0.BETA1-SERVER</id>
+        <id>2.3.0-SNAPSHOT-SERVER</id>
         <properties>
-          <hornetqServerVersion>2.3.0.BETA1</hornetqServerVersion>
+          <hornetqServerVersion>2.3.0.BETA-SNAPSHOT</hornetqServerVersion>
           <nettyServerVersion>3.4.5.Final</nettyServerVersion>
       </properties>
       </profile>
