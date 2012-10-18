@@ -33,7 +33,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.netty</groupId>
+            <groupId>${nettyClientGroupId}</groupId>
             <artifactId>netty</artifactId>
             <version>${nettyClientVersion}</version>
             <scope>test</scope>
@@ -70,9 +70,10 @@
          </activation>
        <properties>
          <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
-         <nettyClientVersion>3.2.6.Final</nettyClientVersion>
-         <hornetqServerVersion>2.3.0-SNAPSHOT-SERVER</hornetqServerVersion>
+         <nettyClientVersion>3.4.5.Final</nettyClientVersion>
+         <hornetqServerVersion>2.3.0.BETA-SNAPSHOT</hornetqServerVersion>
          <nettyServerVersion>3.4.5.Final</nettyServerVersion>
+         <nettyClientGroupId>io.netty</nettyClientGroupId>
        </properties>
      </profile>
       <profile>
@@ -80,13 +81,15 @@
         <properties>
           <hornetqServerVersion>2.3.0.BETA-SNAPSHOT</hornetqServerVersion>
           <nettyServerVersion>3.4.5.Final</nettyServerVersion>
+         <nettyClientGroupId>io.netty</nettyClientGroupId>
       </properties>
       </profile>
       <profile>
         <id>2.2.19-CLIENT</id>
         <properties>
           <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
-          <nettyClientVersion>3.2.6.Final</nettyClientVersion>
+          <nettyClientVersion>3.4.5.Final</nettyClientVersion>
+         <nettyClientGroupId>io.netty</nettyClientGroupId>
         </properties>
       </profile>
       <profile>
@@ -94,6 +97,7 @@
         <properties>
           <hornetqClientVersion>2.2.16.Final</hornetqClientVersion>
           <nettyClientVersion>3.2.5.Final</nettyClientVersion>
+          <nettyClientGroupId>org.jboss.netty</nettyClientGroupId>
         </properties>
       </profile>
         <profile>
@@ -154,40 +158,6 @@
                                     <hornetqConfigurationDir>target/test-classes/hornetqLiveNodeA/</hornetqConfigurationDir>
                                 </configuration>
                             </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.hornetq</groupId>
-                        <artifactId>hornetq-maven-plugin</artifactId>
-                        <version>1.1.0</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.hornetq</groupId>
-                                <artifactId>hornetq-core</artifactId>
-                                <version>${hornetqServerVersion}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.hornetq</groupId>
-                                <artifactId>hornetq-jms</artifactId>
-                                <version>${hornetqServerVersion}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>io.netty</groupId>
-                                <artifactId>netty</artifactId>
-                                <version>${nettyServerVersion}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.jboss.javaee</groupId>
-                                <artifactId>jboss-jms-api</artifactId>
-                                <version>1.1.0.GA</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.jboss.naming</groupId>
-                                <artifactId>jnpserver</artifactId>
-                                <version>5.0.3.GA</version>
-                            </dependency>
-                        </dependencies>
-                        <executions>
                             <execution>
                                 <id>startBackupA</id>
                                 <goals>
