@@ -116,7 +116,7 @@
                             </dependency>
                             <dependency>
                                 <groupId>org.hornetq</groupId>
-                                <artifactId>hornetq-jms</artifactId>
+                                <artifactId>hornetq-jms-server</artifactId>
                                 <version>${hornetqServerVersion}</version>
                             </dependency>
                             <dependency>
@@ -239,7 +239,7 @@
                     </dependency>
                     <dependency>
                         <groupId>org.hornetq</groupId>
-                        <artifactId>hornetq-jms</artifactId>
+                        <artifactId>hornetq-jms-server</artifactId>
                         <version>${hornetqServerVersion}</version>
                     </dependency>
                     <dependency>
