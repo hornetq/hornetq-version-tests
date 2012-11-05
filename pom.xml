@@ -53,6 +53,11 @@
         <artifactId>jnpserver</artifactId>
         <version>5.0.3.GA</version>
       </dependency>
+      <dependency>
+        <groupId>org.hornetq</groupId>
+        <artifactId>hornetq-maven-plugin</artifactId>
+        <version>1.1.0</version>
+      </dependency>
     </dependencies>
 
     <profiles>
@@ -63,11 +68,8 @@
           After adding a new SERVER profile...
           mvn help:all-profiles | grep -P "Profile Id.*SERVER" | cut -d ' ' -f 5
      -->
-     <profile>
-       <id>default</id>
-         <activation>
-            <activeByDefault>true</activeByDefault>
-         </activation>
+        <profile>
+            <id>default</id>
        <properties>
          <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
          <nettyClientVersion>3.4.5.Final</nettyClientVersion>
@@ -75,7 +77,100 @@
          <nettyServerVersion>3.4.5.Final</nettyServerVersion>
          <nettyClientGroupId>io.netty</nettyClientGroupId>
        </properties>
-     </profile>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.hornetq</groupId>
+                        <artifactId>hornetq-maven-plugin</artifactId>
+                        <version>1.1.0</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.hornetq</groupId>
+                                <artifactId>hornetq-core</artifactId>
+                                <version>${hornetqServerVersion}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.hornetq</groupId>
+                                <artifactId>hornetq-jms-server</artifactId>
+                                <version>${hornetqServerVersion}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>io.netty</groupId>
+                                <artifactId>netty</artifactId>
+                                <version>${nettyServerVersion}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.jboss.javaee</groupId>
+                                <artifactId>jboss-jms-api</artifactId>
+                                <version>1.1.0.GA</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.jboss.naming</groupId>
+                                <artifactId>jnpserver</artifactId>
+                                <version>5.0.3.GA</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <waitOnStart>false</waitOnStart>
+                                    <hornetqConfigurationDir>target/test-classes/hornetq/</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                                <phase>post-integration-test</phase>
+                                <configuration>
+                                    <hornetqConfigurationDir>target/test-classes/hornetq/</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-surefire-plugin</artifactId>
+                      <version>2.9</version>
+                      <configuration>
+                        <excludes>
+                          <exclude>**/*.java</exclude>
+                        </excludes>
+                      </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
       <profile>
         <id>2.3.0-SNAPSHOT-SERVER</id>
         <properties>
@@ -102,6 +197,13 @@
       </profile>
         <profile>
             <id>failover</id>
+       <properties>
+         <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
+         <nettyClientVersion>3.4.5.Final</nettyClientVersion>
+         <hornetqServerVersion>2.3.0.BETA-SNAPSHOT</hornetqServerVersion>
+         <nettyServerVersion>3.4.5.Final</nettyServerVersion>
+         <nettyClientGroupId>io.netty</nettyClientGroupId>
+       </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -165,6 +267,8 @@
                                 </goals>
                                 <phase>pre-integration-test</phase>
                                 <configuration>
+                                    <jndiPort>1199</jndiPort>
+                                    <jndiRmiPort>1198</jndiRmiPort>
                                     <waitOnStart>false</waitOnStart>
                                     <nodeId>nodeA</nodeId>
                                     <hornetqConfigurationDir>target/test-classes/hornetqBackupNodeA/</hornetqConfigurationDir>
@@ -224,8 +328,205 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>ha</id>
+            <properties>
+                <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
+                <nettyClientVersion>3.4.5.Final</nettyClientVersion>
+                <hornetqServerVersion>2.3.0.BETA-SNAPSHOT</hornetqServerVersion>
+                <nettyServerVersion>3.4.5.Final</nettyServerVersion>
+                <nettyClientGroupId>io.netty</nettyClientGroupId>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.hornetq</groupId>
+                        <artifactId>hornetq-maven-plugin</artifactId>
+                        <version>1.1.0</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.hornetq</groupId>
+                                <artifactId>hornetq-core</artifactId>
+                                <version>${hornetqServerVersion}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.hornetq</groupId>
+                                <artifactId>hornetq-jms-server</artifactId>
+                                <version>${hornetqServerVersion}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>io.netty</groupId>
+                                <artifactId>netty</artifactId>
+                                <version>${nettyServerVersion}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.jboss.javaee</groupId>
+                                <artifactId>jboss-jms-api</artifactId>
+                                <version>1.1.0.GA</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.jboss.naming</groupId>
+                                <artifactId>jnpserver</artifactId>
+                                <version>5.0.3.GA</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>startA</id>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <!-- this parameter should be set to true in only one place! -->
+                                    <testClusterManager>true</testClusterManager>
+                                    <waitOnStart>false</waitOnStart>
+                                    <nodeId>nodeA</nodeId>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/A</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>startB</id>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <jndiPort>1199</jndiPort>
+                                    <jndiRmiPort>1198</jndiRmiPort>
+                                    <waitOnStart>false</waitOnStart>
+                                    <nodeId>nodeB</nodeId>
+                                    <fork>true</fork>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/B</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>startC</id>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <jndiPort>1299</jndiPort>
+                                    <jndiRmiPort>1298</jndiRmiPort>
+                                    <waitOnStart>false</waitOnStart>
+                                    <nodeId>nodeC</nodeId>
+                                    <fork>true</fork>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/C</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>startD</id>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <jndiPort>1399</jndiPort>
+                                    <jndiRmiPort>1398</jndiRmiPort>
+                                    <waitOnStart>false</waitOnStart>
+                                    <nodeId>nodeD</nodeId>
+                                    <fork>true</fork>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/D</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>startE</id>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <jndiPort>1499</jndiPort>
+                                    <jndiRmiPort>1498</jndiRmiPort>
+                                    <waitOnStart>false</waitOnStart>
+                                    <nodeId>nodeE</nodeId>
+                                    <fork>true</fork>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/E</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>stopA</id>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                                <phase>post-integration-test</phase>
+                                <configuration>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/A</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stopB</id>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                                <phase>post-integration-test</phase>
+                                <configuration>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/B</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stopC</id>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                                <phase>post-integration-test</phase>
+                                <configuration>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/C</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stopD</id>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                                <phase>post-integration-test</phase>
+                                <configuration>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/D</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stopE</id>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                                <phase>post-integration-test</phase>
+                                <configuration>
+                                    <hornetqConfigurationDir>target/test-classes/cluster/E</hornetqConfigurationDir>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <includes>
+                                <include>**/*HAT.java</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
-    <build>
+     <build>
         <plugins>
             <plugin>
                 <groupId>org.hornetq</groupId>
@@ -258,22 +559,6 @@
                         <version>5.0.3.GA</version>
                     </dependency>
                 </dependencies>
-                <executions>
-                    <execution>
-                        <id>start</id>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                    </execution>
-                    <execution>
-                        <id>stop</id>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                        <phase>post-integration-test</phase>
-                    </execution>
-                </executions>
                 <configuration>
                     <waitOnStart>false</waitOnStart>
                     <hornetqConfigurationDir>target/test-classes/hornetq/</hornetqConfigurationDir>
@@ -288,6 +573,7 @@
                   <exclude>**/JoramAggregationTest.java</exclude>
                   <exclude>**/JoramAggregationTest$DummyTestCase.java</exclude>
                   <exclude>**/*IFT.java</exclude>
+                  <exclude>**/*HAT.java</exclude>
                 </excludes>
               </configuration>
             </plugin>
