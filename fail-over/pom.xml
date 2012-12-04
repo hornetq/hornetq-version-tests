@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+   xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.hornetq.tests.versions</groupId>
+      <artifactId>hornetq-version-tests</artifactId>
+      <version>1.0-SNAPSHOT</version>
+   </parent>
+   <artifactId>fail-over</artifactId>
+   <name>fail-over</name>
+
+   <properties>
+      <backupConf>${project.build.testOutputDirectory}/hornetqBackupNodeA/</backupConf>
+      <liveConf>${project.build.testOutputDirectory}/hornetqLiveNodeA/</liveConf>
+   </properties>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.hornetq</groupId>
+            <artifactId>hornetq-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>start</id>
+                  <goals>
+                     <goal>start</goal>
+                  </goals>
+                  <phase>pre-integration-test</phase>
+                  <configuration>
+                     <waitOnStart>false</waitOnStart>
+                     <nodeId>nodeA</nodeId>
+                     <hornetqConfigurationDir>${liveConf}</hornetqConfigurationDir>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>stop</id>
+                  <goals>
+                     <goal>stop</goal>
+                  </goals>
+                  <phase>post-integration-test</phase>
+                  <configuration>
+                     <hornetqConfigurationDir>${liveConf}</hornetqConfigurationDir>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>startBackupA</id>
+                  <goals>
+                     <goal>start</goal>
+                  </goals>
+                  <phase>pre-integration-test</phase>
+                  <configuration>
+                     <jndiPort>1199</jndiPort>
+                     <jndiRmiPort>1198</jndiRmiPort>
+                     <waitOnStart>false</waitOnStart>
+                     <nodeId>nodeA</nodeId>
+                     <hornetqConfigurationDir>${backupConf}</hornetqConfigurationDir>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>stopBackupA</id>
+                  <goals>
+                     <goal>stop</goal>
+                  </goals>
+                  <phase>post-integration-test</phase>
+                  <configuration>
+                     <hornetqConfigurationDir>${backupConf}</hornetqConfigurationDir>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+</project>

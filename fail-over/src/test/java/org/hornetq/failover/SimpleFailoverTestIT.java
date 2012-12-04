@@ -41,7 +41,6 @@ import java.util.Hashtable;
 
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
- *         10/28/11
  */
 public class SimpleFailoverIFT
 {
