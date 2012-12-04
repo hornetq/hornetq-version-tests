@@ -43,7 +43,7 @@ import org.hornetq.maven.TestClusterManagerMBean;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ClusterTopologyListenerTestHAT
+public class ClusterTopologyListenerTestIT
 {
    ClientSessionFactory sf = null;
 
