@@ -42,7 +42,7 @@ import java.util.Hashtable;
 /**
  * @author <a href="mailto:andy.taylor@jboss.org">Andy Taylor</a>
  */
-public class SimpleFailoverIFT
+public class SimpleFailoverTestIT
 {
 
     private final String JMX_URL = "service:jmx:rmi:///jndi/rmi://localhost:3000/jmxrmi";
