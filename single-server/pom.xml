@@ -12,11 +12,53 @@
    <name>single-server</name>
 
    <properties>
-     <configPath>${project.build.testOutputDirectory}/hornetq/</configPath>
+      <configPath>${project.build.testOutputDirectory}/hornetq/</configPath>
+      <!-- server start/stop is done by hornetq-maven-plugin and not in the java test code -->
+      <org.hornetq.jms.HornetQAdmin.serverLifeCycle>false</org.hornetq.jms.HornetQAdmin.serverLifeCycle>
    </properties>
+
 
    <build>
       <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>unpack</id>
+                  <phase>process-test-classes</phase>
+                  <goals>
+                     <goal>unpack</goal>
+                  </goals>
+                  <configuration>
+                     <artifactItems>
+                        <artifactItem>
+                           <!-- Code from joram-tests needs HornetQDefaultConfiguration -->
+                           <groupId>org.hornetq</groupId>
+                           <artifactId>hornetq-core-client</artifactId>
+                           <version>${hornetqServerVersion}</version>
+                           <overWrite>true</overWrite>
+                           <includes>**/HornetQDefaultConfiguration.*</includes>
+                           <outputDirectory>
+                              ${project.build.directory}/test-classes
+                           </outputDirectory>
+                        </artifactItem>
+                        <artifactItem>
+                           <!-- Unpack test-jar of joram-tests to execute its tests here -->
+                           <groupId>org.hornetq.tests</groupId>
+                           <artifactId>joram-tests</artifactId>
+                           <version>${hornetqServerVersion}</version>
+                           <type>test-jar</type>
+                           <overWrite>true</overWrite>
+                           <outputDirectory>
+                              ${project.build.directory}/test-classes
+                           </outputDirectory>
+                        </artifactItem>
+                     </artifactItems>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
          <plugin>
             <groupId>org.hornetq</groupId>
             <artifactId>hornetq-maven-plugin</artifactId>
@@ -39,10 +81,27 @@
                   </goals>
                   <phase>post-integration-test</phase>
                   <configuration>
-                    <hornetqConfigurationDir>${configPath}</hornetqConfigurationDir>
+                     <hornetqConfigurationDir>${configPath}</hornetqConfigurationDir>
                   </configuration>
                </execution>
             </executions>
+         </plugin>
+         <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-failsafe-plugin</artifactId>
+           <configuration>
+             <includes>
+               <!-- Include *Test.java, as we reuse tests from joram-tests -->
+               <include>**/*Test.java</include>
+               <!-- the following are the 'default' includes -->
+               <include>**/IT*.java</include>
+               <include>**/*IT.java</include>
+               <include>**/*ITCase.java</include>
+             </includes>
+             <excludes>
+               <exclude>org/objectweb/**</exclude>
+             </excludes>
+           </configuration>
          </plugin>
       </plugins>
    </build>
