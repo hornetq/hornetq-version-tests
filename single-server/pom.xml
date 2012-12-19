@@ -13,7 +13,6 @@
 
    <properties>
       <configPath>${project.build.testOutputDirectory}/hornetq/</configPath>
-      <!-- server start/stop is done by hornetq-maven-plugin and not in the java test code -->
       <org.hornetq.jms.HornetQAdmin.serverLifeCycle>false</org.hornetq.jms.HornetQAdmin.serverLifeCycle>
    </properties>
 
@@ -101,6 +100,10 @@
              <excludes>
                <exclude>org/objectweb/**</exclude>
              </excludes>
+             <!-- "org.hornetq.jms.HornetQAdmin.serverLifeCycle" controls whether
+                  server start/stop is done in Java code at HornetQAdmin or not.
+                  We start/stop using the hornetq-maven-plugin.  -->
+             <argLine>-Dorg.hornetq.jms.HornetQAdmin.serverLifeCycle=false</argLine>
            </configuration>
          </plugin>
       </plugins>
