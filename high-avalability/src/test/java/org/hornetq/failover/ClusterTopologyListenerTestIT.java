@@ -22,13 +22,28 @@
 package org.hornetq.failover;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageProducer;
+import javax.jms.Queue;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+
+import org.hornetq.api.core.DiscoveryGroupConfiguration;
 import org.hornetq.api.core.HornetQException;
 import org.hornetq.api.core.Pair;
 import org.hornetq.api.core.TransportConfiguration;
@@ -38,6 +53,7 @@ import org.hornetq.api.core.client.ClusterTopologyListener;
 import org.hornetq.api.core.client.HornetQClient;
 import org.hornetq.api.core.client.ServerLocator;
 import org.hornetq.core.remoting.impl.netty.NettyConnectorFactory;
+import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.hornetq.maven.PluginUtil;
 import org.hornetq.maven.TestClusterManagerMBean;
 import org.junit.Assert;
@@ -80,6 +96,81 @@ public class ClusterTopologyListenerTestIT
       
       sf.close();
       sf = null;
+   }
+
+   @Test
+   public void CFJndiLookupBackwardCompatibilityTest() throws Exception
+   {
+      Connection connection1 = null;
+      Connection connection2 = null;
+      try
+      {
+         Properties prop = new Properties();
+         prop.setProperty("java.naming.factory.initial", "org.jnp.interfaces.NamingContextFactory");
+         prop.setProperty("java.naming.provider.url", "jnp://localhost:1099");
+         prop.setProperty("java.naming.factory.url.pkgs", "org.jboss.naming:org.jnp.interfaces");
+         
+         System.out.println("JNDI properties: " + prop);
+      
+         Context context = new InitialContext(prop);
+         
+         Queue testQueue = (Queue) context.lookup("/queue/testQueue");
+         
+         ConnectionFactory factory = (ConnectionFactory) context.lookup("/HAStaticConnectionFactory");
+         
+         HornetQConnectionFactory fact = (HornetQConnectionFactory)factory;
+         
+         DiscoveryGroupConfiguration dg = fact.getDiscoveryGroupConfiguration();
+         
+         assertTrue("dg = " + dg, dg == null);
+         
+         connection1 = factory.createConnection();
+         
+         sendAndReceive(connection1, testQueue);
+         
+         connection1.close();
+         connection1 = null;
+         
+         factory = (ConnectionFactory) context.lookup("/HADiscoveryConnectionFactory");
+
+         fact = (HornetQConnectionFactory)factory;
+         
+         dg = fact.getDiscoveryGroupConfiguration();
+         
+         assertTrue("dg = " + dg, dg != null);
+         
+         connection2 = factory.createConnection();
+         
+         sendAndReceive(connection2, testQueue);
+         
+         connection2.close();
+         connection2 = null;
+
+      }
+      finally
+      {
+         if (connection1 != null)
+         {
+            connection1.close();
+         }
+         if (connection2 != null)
+         {
+            connection2.close();
+         }
+      }
+   }
+
+   private void sendAndReceive(Connection connection, Queue queue) throws JMSException
+   {
+      connection.start();
+      Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+      MessageProducer producer = session.createProducer(queue);
+      TextMessage message = session.createTextMessage("Testing connection basic function");
+      producer.send(message);
+      
+      MessageConsumer consumer = session.createConsumer(queue);
+      TextMessage receivedMessage = (TextMessage) consumer.receive(5000);
+      assertEquals("Testing connection basic function", receivedMessage.getText());
    }
 
    protected ClientSession checkSessionOrReconnect(ClientSession session, ServerLocator locator) throws Exception
