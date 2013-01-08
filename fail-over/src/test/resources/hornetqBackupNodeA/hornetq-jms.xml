@@ -23,6 +23,48 @@
       <!-- Try reconnecting an unlimited number of times (-1 means "unlimited") -->
       <reconnect-attempts>-1</reconnect-attempts>
    </connection-factory>
+   
+   <connection-factory name="HAStaticConnectionFactory">
+      <connectors>
+         <connector-ref connector-name="netty-connector"/>
+      </connectors>
+
+      <entries>
+         <entry name="HAStaticConnectionFactory"/>
+      </entries>
+       
+       <ha>true</ha>
+      <!-- Pause 1 second between connect attempts -->
+      <retry-interval>1000</retry-interval>
+
+      <!-- Multiply subsequent reconnect pauses by this multiplier. This can be used to
+      implement an exponential back-off. For our purposes we just set to 1.0 so each reconnect
+      pause is the same length -->
+      <retry-interval-multiplier>1.0</retry-interval-multiplier>
+
+      <!-- Try reconnecting an unlimited number of times (-1 means "unlimited") -->
+      <reconnect-attempts>-1</reconnect-attempts>
+   </connection-factory>
+   
+   <connection-factory name="HADiscoveryConnectionFactory">
+      <discovery-group-ref discovery-group-name="dg-group1"/>
+
+      <entries>
+         <entry name="HADiscoveryConnectionFactory"/>
+      </entries>
+       
+       <ha>true</ha>
+      <!-- Pause 1 second between connect attempts -->
+      <retry-interval>1000</retry-interval>
+
+      <!-- Multiply subsequent reconnect pauses by this multiplier. This can be used to
+      implement an exponential back-off. For our purposes we just set to 1.0 so each reconnect
+      pause is the same length -->
+      <retry-interval-multiplier>1.0</retry-interval-multiplier>
+
+      <!-- Try reconnecting an unlimited number of times (-1 means "unlimited") -->
+      <reconnect-attempts>-1</reconnect-attempts>
+   </connection-factory>
 
    <!--the queue used by the example-->
    <queue name="testQueue">
