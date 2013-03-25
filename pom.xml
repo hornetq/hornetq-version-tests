@@ -89,7 +89,7 @@
             <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
             <nettyClientVersion>3.4.5.Final</nettyClientVersion>
             <hornetqServerVersion>2.3.0.BETA-SNAPSHOT</hornetqServerVersion>
-            <nettyServerVersion>3.4.5.Final</nettyServerVersion>
+            <nettyServerVersion>3.6.2.Final</nettyServerVersion>
             <nettyClientGroupId>io.netty</nettyClientGroupId>
          </properties>
       </profile>
@@ -97,7 +97,7 @@
          <id>2.3.0-SNAPSHOT-SERVER</id>
          <properties>
             <hornetqServerVersion>2.3.0.BETA-SNAPSHOT</hornetqServerVersion>
-            <nettyServerVersion>3.4.5.Final</nettyServerVersion>
+            <nettyServerVersion>3.6.2.Final</nettyServerVersion>
             <nettyClientGroupId>io.netty</nettyClientGroupId>
          </properties>
       </profile>
