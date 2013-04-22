@@ -14,6 +14,9 @@ To run all tests, just issue
 export MAVEN_OPTS="-Dcom.sun.management.jmxremote.port=3000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
 mvn verify
 ```
+(note: On Windows platform you need use 'set' instead of 'export':
+set MAVEN_OPTS=-Dcom.sun.management.jmxremote.port=3000 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
+and do not add quotes)
 
 ### Failure to find org.hornetq.tests:joram-tests:jar:tests
 
