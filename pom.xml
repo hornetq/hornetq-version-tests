@@ -88,16 +88,32 @@
          <properties>
             <hornetqClientVersion>2.2.19.Final</hornetqClientVersion>
             <nettyClientVersion>3.4.5.Final</nettyClientVersion>
-            <hornetqServerVersion>2.3.0.BETA-SNAPSHOT</hornetqServerVersion>
+            <hornetqServerVersion>2.4-SNAPSHOT</hornetqServerVersion>
             <nettyServerVersion>3.6.2.Final</nettyServerVersion>
             <nettyClientGroupId>io.netty</nettyClientGroupId>
          </properties>
       </profile>
       <profile>
-         <id>2.3.0-SNAPSHOT-SERVER</id>
+         <id>2.4-SNAPSHOT-SERVER</id>
          <properties>
-            <hornetqServerVersion>2.3.0.BETA-SNAPSHOT</hornetqServerVersion>
+            <hornetqServerVersion>2.4-SNAPSHOT</hornetqServerVersion>
             <nettyServerVersion>3.6.2.Final</nettyServerVersion>
+            <nettyClientGroupId>io.netty</nettyClientGroupId>
+         </properties>
+      </profile>
+      <profile>
+         <id>2.3.X-SNAPSHOT-SERVER</id>
+         <properties>
+            <hornetqServerVersion>2.3.2-SNAPSHOT</hornetqServerVersion>
+            <nettyServerVersion>3.6.2.Final</nettyServerVersion>
+            <nettyClientGroupId>io.netty</nettyClientGroupId>
+         </properties>
+      </profile>
+      <profile>
+         <id>2.3.2-CLIENT</id>
+         <properties>
+            <hornetqClientVersion>2.3.2.Final</hornetqClientVersion>
+            <nettyClientVersion>3.6.2.Final</nettyClientVersion>
             <nettyClientGroupId>io.netty</nettyClientGroupId>
          </properties>
       </profile>
